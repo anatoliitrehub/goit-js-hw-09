@@ -16,3 +16,30 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.timer{
+  display: flex;
+  gap: 15px;
+}
+
+.field{
+  position: relative;
+}
+
+.field .value{
+  font-size: 2rem;
+}
+
+.field:nth-child(-n+3):after{
+content: ':';
+font-size: 2rem;
+margin-left: 15px;
+}
+
+.field .label{
+  position: absolute;
+  top: 40px;
+  left:0px
+}
+
+
