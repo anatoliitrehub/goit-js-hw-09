@@ -42,4 +42,15 @@ margin-left: 15px;
   left:0px
 }
 
+.form{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+}
+
+.form button{
+width: 50%;
+
+}
+
 
