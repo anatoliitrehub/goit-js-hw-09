@@ -2,10 +2,16 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import Notiflix from 'notiflix';
 
+const showDay = document.querySelector('span[data-days]');
+const showHours = document.querySelector('span[data-hours]');
+const showMinutes = document.querySelector('span[data-minutes]');
+const showSeconds = document.querySelector('span[data-seconds]');
 const butStart = document.querySelector('button[data-start]');
+butStart.addEventListener('click',startFunction);
+
 butStart.disabled = true;
 let inputedTime;
-let tempTime = {}
+let tempTime = {};
 
 const options = {
     enableTime: true,
@@ -16,8 +22,7 @@ const options = {
         inputedTime = selectedDates[0];
         const deltaTime = inputedTime.getTime() - new Date().getTime()
        if (deltaTime<0) Notiflix.Notify.failure("Please choose a date in the future");
-       else {butStart.disabled = false;
-       butStart.addEventListener('click',startFunction)}
+       else butStart.disabled = false;
     },
   };
 
@@ -32,17 +37,13 @@ function startFunction(){
             return;};
 
         const showTime = convertMs(inputedTime.getTime() - new Date().getTime());
-        // console.log(showTime);
-        //         console.log(tempTime);
-        (tempTime === {}) ? tempTime = {...showTime} : null;
+        
+        (tempTime === null) ? tempTime = {...showTime} : null;
 
-        (tempTime.days !== showTime.days) ?  
-        document.querySelector('span[data-days]').textContent = addLeadingZero(showTime.days): null;
-        (tempTime.hours !== showTime.hours) ?  
-        document.querySelector('span[data-hours]').textContent = addLeadingZero(showTime.hours):null;
-        (tempTime.minutes !== showTime.minutes) ?  
-        document.querySelector('span[data-minutes]').textContent = addLeadingZero(showTime.minutes):null;
-        document.querySelector('span[data-seconds]').textContent = addLeadingZero(showTime.seconds);
+        if (tempTime.days !== showTime.days) showDay.textContent = addLeadingZero(showTime.days);
+        if (tempTime.hours !== showTime.hours) showHours.textContent = addLeadingZero(showTime.hours);
+        if (tempTime.minutes !== showTime.minutes) showMinutes.textContent = addLeadingZero(showTime.minutes);
+        showSeconds.textContent = addLeadingZero(showTime.seconds);
         tempTime = {...showTime}; // create temp var for compare changes
 
     },1000)

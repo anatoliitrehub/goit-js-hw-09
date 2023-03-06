@@ -10,18 +10,18 @@ function eventHandler({target:{dataset}}){
         startDisable.disabled = true;
         stopDisable.disabled = false;
 
-        ColorChanger.start();
+        colorChanger.start();
     }
     
     if(dataset.stop==='')  {
         startDisable.disabled = false;
         stopDisable.disabled = true;
 
-        ColorChanger.stop();
+        colorChanger.stop();
     }
 }
 
-const ColorChanger = {
+const colorChanger = {
     interval:'',
     start(){
     this.interval = setInterval(()=>document.body.style.backgroundColor=getRandomHexColor(),1000);
