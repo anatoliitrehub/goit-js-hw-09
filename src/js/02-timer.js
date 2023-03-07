@@ -11,7 +11,7 @@ butStart.addEventListener('click',startFunction);
 
 butStart.disabled = true;
 let inputedTime;
-let tempTime = {};
+// let tempTime = {};
 
 const options = {
     enableTime: true,
@@ -37,14 +37,14 @@ function startFunction(){
             return;};
 
         const showTime = convertMs(inputedTime.getTime() - new Date().getTime());
-        
-        (tempTime === null) ? tempTime = {...showTime} : null;
 
-        if (tempTime.days !== showTime.days) showDay.textContent = addLeadingZero(showTime.days);
-        if (tempTime.hours !== showTime.hours) showHours.textContent = addLeadingZero(showTime.hours);
-        if (tempTime.minutes !== showTime.minutes) showMinutes.textContent = addLeadingZero(showTime.minutes);
+        // (tempTime === null) ? tempTime = {...showTime} : null;
+
+        showDay.textContent = addLeadingZero(showTime.days);
+        showHours.textContent = addLeadingZero(showTime.hours);
+        showMinutes.textContent = addLeadingZero(showTime.minutes);
         showSeconds.textContent = addLeadingZero(showTime.seconds);
-        tempTime = {...showTime}; // create temp var for compare changes
+        // tempTime = {...showTime}; // create temp var for compare changes
 
     },1000)
 }
